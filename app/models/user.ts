@@ -22,7 +22,7 @@ export function getOne(id:string, body?:string){
 }
 // getByEmail
 export function getByEmail(body?:string){
-    return selectQuery<IUser>(`SELECT * FROM users WHERE id = ?`, [body]);
+    return selectQuery<IUser>(`SELECT * FROM users WHERE email = ?`, [body] );
 }
  // getupdate
 export function update(id:string, body:string){

@@ -1,22 +1,15 @@
 import { Router } from "express";
-// import { IUser } from "../models/user";
 import db from "../models";
+
+import * as userServices from "../services/user.services";
 
 const router = Router();
 
 const userq = db.users.getAll();
 
 
-router.post('/', async (req, res)=>{
-    try{
-        const users = await db.users.adduser(req.body);
-        res.json(users);
-    }
-    catch(error){
-        res.status(500).json(error)
-        console.log(error);
-    }
-});
+router.post('/register', userServices.register);
+router.post('/login', userServices.login);
 
 router.get('/', async (req, res)=>{
     try{
@@ -55,8 +48,6 @@ router.put('/:id', async (req, res)=>{
         res.status(500).json(error)
         console.log(error);
     }
-
-
 });
 
 router.delete('/:id', async (req, res)=>{
